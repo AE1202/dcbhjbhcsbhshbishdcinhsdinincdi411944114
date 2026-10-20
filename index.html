@@ -308,7 +308,20 @@ const DEF_TPL={
     X('Dominadas estrictas',5,5,8,120,{b:1,rpe:8}),X('Dominadas explosivas',4,3,3,90,{...BW}),X('Flexiones con pausa',4,10,15,60,{...BW}),
     X('Búlgara sin peso',4,10,12,60,{...BW,side:1}),X('Curl nórdico',2,4,6,90,{...BW}),X('L-sit colgado',3,10,20,45,{...BW,u:'seg'})]},
   min:{name:'Mínima 30′',day:null,place:'gym',dur:30,warm:'5 min bici + series de aproximación',ex:[
-    X('Salto horizontal',3,3,3,60,{b:1,inc:0,x:'cm'}),X('Sentadilla frontal',3,3,5,150,{rpe:7}),X('Press banca',3,3,5,150,{rpe:7}),X('Dominadas lastradas',2,3,5,120,{b:1,rpe:7})]}
+    X('Salto horizontal',3,3,3,60,{b:1,inc:0,x:'cm'}),X('Sentadilla frontal',3,3,5,150,{rpe:7}),X('Press banca',3,3,5,150,{rpe:7}),X('Dominadas lastradas',2,3,5,120,{b:1,rpe:7})]},
+  casaL:{name:'Lower · Casa',day:null,for:'lower',place:'casa',dur:50,warm:'Búlgara y RDL con tempo 3-1-X (bajar 3 s, pausa 1 s, subir explosivo) · kg = peso de la mochila',ex:[
+    X('Salto horizontal',4,3,3,75,{b:1,inc:0,x:'cm'}),X('Búlgara con mochila',4,6,10,120,{side:1,inc:2,rpe:8}),X('Pistol squat asistida',3,5,8,90,{...BW,side:1}),
+    X('RDL a una pierna con mochila',3,8,10,90,{side:1,inc:2,rpe:8}),X('Curl nórdico',3,4,6,90,{...BW}),X('Suitcase carry',3,30,30,60,{u:'m',inc:2,side:1}),X('Plancha lateral',3,30,45,45,{...BW,u:'seg',side:1})]},
+  casaU:{name:'Upper · Casa',day:null,for:'upper',place:'casa',dur:50,warm:'Hombro: flexión explosiva y pike a RPE ≤7 · kg = peso de la mochila',
+    blocks:{S1:{label:'Superserie hombro',rounds:2,rest:60}},ex:[
+    X('Flexión explosiva',4,4,5,60,{...BW}),X('Dominadas lastradas',4,3,5,150,{b:1,rpe:7}),X('Flexión lastrada con mochila',4,6,10,120,{inc:2,rpe:8}),
+    X('Remo invertido bajo mesa',3,8,12,90,{...BW}),X('Pike push-up',3,6,10,90,{...BW}),
+    X('Elevaciones laterales',2,12,15,0,{c:'S1',inc:1,rpe:8}),X('Rotación externa',2,15,15,0,{c:'S1',b:1,nk:1,inc:0})]},
+  casaE:{name:'Explosivo · Casa',day:null,for:'explo',place:'casa',dur:45,warm:'Cortar los saltos si baja la altura · finisher: 5 rondas sin pausa entre ejercicios',
+    blocks:{B1:{label:'Bloque 1 · Potencia',rounds:0,rest:0},B2:{label:'Bloque 2 · Potencia con carga',rounds:0,rest:0},B3:{label:'Finisher · densidad',rounds:5,rest:30}},ex:[
+    X('Salto vertical (CMJ)',4,3,3,75,{c:'B1',b:1,inc:0,x:'cm'}),X('Dominadas explosivas',5,3,3,90,{c:'B1',...BW}),
+    X('Salto con mochila',4,4,4,90,{c:'B2',inc:2}),X('Swing con mochila',4,12,12,60,{c:'B2',inc:2,rpe:7}),
+    X('Burpees',5,5,5,0,{c:'B3',...BW}),X('Dominadas estrictas',5,3,3,0,{c:'B3',...BW}),X('Farmer walk',5,40,40,0,{c:'B3',u:'m',inc:2})]}
 };
 const DEF_MEALS=[{n:'Desayuno',g:23,d:'3 huevos + 40 g avena'},{n:'Almuerzo',g:60,d:'atún o pollo 250 g'},{n:'Merienda',g:15,d:'yogur + almendras'},{n:'Post-entreno',g:35,d:'batido o atún'},{n:'Cena',g:40,d:'carne + legumbres'}];
 const RAMP={
@@ -317,7 +330,10 @@ const RAMP={
   explo:{raise:'Bici · 8 min',act:['Gusano de pulgadas · 5','Estocada con rotación · 5 por lado','90/90 de cadera · 5 por lado','Rotación externa con banda · 10 por brazo'],lift:'Hang power clean',sets:[[0,5],[40,3],[60,2]],pot:['Skips A · 2 × 20 m','Saltos verticales · 3','Pase de balón liviano · 3']},
   calis:{raise:'Trote suave · 5 min',act:['Skips A y B · 2 × 20 m','Leg swings · 10 por pierna','Colgado pasivo · 30 s','Dominadas escapulares · 8'],pot:['Aceleraciones 3 × 30 m al 60 / 80 / 90 % (obligatorio antes de sprintar)']},
   casa:{raise:'Jumping jacks · 3 min',act:['Colgado pasivo · 30 s','Dominadas escapulares · 8','Gato-vaca · 8'],pot:['2 series de 3 dominadas lentas']},
-  min:{raise:'Bici · 5 min',act:['Leg swings · 10 por pierna','Band pull-aparts · 10'],lift:'Sentadilla frontal',sets:[[0,5],[50,3],[75,1]]}
+  min:{raise:'Bici · 5 min',act:['Leg swings · 10 por pierna','Band pull-aparts · 10'],lift:'Sentadilla frontal',sets:[[0,5],[50,3],[75,1]]},
+  casaL:{raise:'Jumping jacks · 3 min',act:['Leg swings · 10 por pierna y dirección','Puente de glúteo · 10','Sentadilla cossack · 8','Tobillo contra la pared · 30 s por lado'],lift:'Búlgara con mochila',sets:[[0,8],[60,5]],pot:['Saltos verticales · 2 × 3']},
+  casaU:{raise:'Jumping jacks · 3 min',act:['Colgado pasivo · 30 s','Dominadas escapulares · 8','Flexiones escapulares · 8','Rotación externa con toalla · 10 por brazo'],lift:'Dominadas lastradas',sets:[[0,5],[50,3]],pot:['Flexiones inclinadas explosivas · 5']},
+  casaE:{raise:'Jumping jacks · 3 min',act:['Gusano de pulgadas · 5','Estocada con rotación · 5 por lado','90/90 de cadera · 5 por lado','Skips en el lugar · 2 × 20 s'],pot:['Saltos verticales · 3','Dominadas escapulares · 5']}
 };
 const COOL={
   lower:['Flexor de cadera de rodillas · 45 s por lado','Isquios en el suelo · 45 s por lado','Paloma para glúteo · 45 s por lado'],
@@ -325,14 +341,18 @@ const COOL={
   explo:['Cuádriceps de pie · 45 s por lado','Pantorrilla contra la pared · 45 s por lado','Flexor de cadera de rodillas · 45 s por lado'],
   calis:['Colgado pasivo · 30 s','Postura del niño · 60 s','Opcional: zona 2 · 20–30 min'],
   casa:['Colgado pasivo · 30 s','Postura del niño · 60 s','Apertura torácica en el suelo · 8 por lado'],
-  min:['Flexor de cadera de rodillas · 45 s por lado','Colgado pasivo · 30 s']
+  min:['Flexor de cadera de rodillas · 45 s por lado','Colgado pasivo · 30 s'],
+  casaL:['Flexor de cadera de rodillas · 45 s por lado','Isquios en el suelo · 45 s por lado','Paloma para glúteo · 45 s por lado'],
+  casaU:['Pectoral en el marco de una puerta · 45 s por lado','Colgado pasivo · 30 s','Tríceps sobre la cabeza · 30 s por lado'],
+  casaE:['Cuádriceps de pie · 45 s por lado','Pantorrilla contra la pared · 45 s por lado','Colgado pasivo · 30 s']
 };
 for(const k in RAMP)DEF_TPL[k].ramp=RAMP[k];
 for(const k in COOL)DEF_TPL[k].cool=COOL[k];
-function enrich(t){for(const k in DEF_TPL){if(!t[k])continue;if(!t[k].ramp&&DEF_TPL[k].ramp)t[k].ramp=clone(DEF_TPL[k].ramp);if(!t[k].cool&&DEF_TPL[k].cool)t[k].cool=clone(DEF_TPL[k].cool)}return t}
+const ADD_TPL=['casaL','casaU','casaE'];
+function enrich(t){for(const k of ADD_TPL)if(!t[k])t[k]=clone(DEF_TPL[k]);for(const k in DEF_TPL){if(!t[k])continue;if(!t[k].ramp&&DEF_TPL[k].ramp)t[k].ramp=clone(DEF_TPL[k].ramp);if(!t[k].cool&&DEF_TPL[k].cool)t[k].cool=clone(DEF_TPL[k].cool)}return t}
 const MOB=[{t:'Sentadilla profunda con pausa',d:'Talones abajo, codos empujan las rodillas',s:60,k:1},{t:'Tobillo contra la pared',d:'Rodilla a la pared sin levantar el talón · 30 s por lado',s:60},{t:'90/90 de cadera',d:'Cambiar de lado lento, espalda alta',s:60,k:1},{t:'Estocada del atleta con rotación',d:'5 por lado',s:60},{t:'Apertura torácica de costado',d:'8 por lado, como un libro',s:60},{t:'Colgado pasivo de la barra',d:'Hombros relajados',s:45,k:1},{t:'Flexor de cadera de rodillas',d:'Apretar el glúteo de atrás · 45 s por lado',s:90},{t:'Gato-vaca',d:'8 lentas, una vértebra a la vez',s:45}];
 const DEF_SET={target:4,min:3,bw:89,sound:true,place:'gym',start:null,prot:160,meals:DEF_MEALS};
-const VQ={'Box jump':'box jump technique landing','Sentadilla frontal':'front squat technique','Peso muerto rumano':'romanian deadlift technique','Sentadilla búlgara':'bulgarian split squat technique','Curl nórdico':'nordic hamstring curl progression','Pallof press':'pallof press technique','Pase de pecho con balón':'medicine ball chest pass','Press banca':'bench press technique','Dominadas lastradas':'weighted pull up technique','Remo con barra':'barbell row technique','Press inclinado mancuernas':'incline dumbbell press technique','Elevaciones laterales':'lateral raise technique','Face pull':'face pull technique','Hang power clean':'hang power clean technique tutorial','Salto horizontal':'broad jump technique','Push press':'push press technique','Lanzamiento rotacional con balón':'medicine ball rotational throw','Swing (KB o mancuerna)':'kettlebell swing technique hip hinge','Farmer walk':'farmer carry technique','Suitcase carry':'suitcase carry technique','Sprint 30 m':'sprint technique acceleration drills','Dominadas explosivas':'explosive pull ups chest to bar','Front lever tuck':'tuck front lever progression','Toes-to-bar':'strict toes to bar progression','Flexiones déficit':'deficit push up','Pistol squat asistida':'assisted pistol squat progression','Dominadas estrictas':'strict pull up technique','Flexiones con pausa':'pause push up','Búlgara sin peso':'bulgarian split squat bodyweight','L-sit colgado':'hanging l-sit progression'};
+const VQ={'Box jump':'box jump technique landing','Sentadilla frontal':'front squat technique','Peso muerto rumano':'romanian deadlift technique','Sentadilla búlgara':'bulgarian split squat technique','Curl nórdico':'nordic hamstring curl progression','Pallof press':'pallof press technique','Pase de pecho con balón':'medicine ball chest pass','Press banca':'bench press technique','Dominadas lastradas':'weighted pull up technique','Remo con barra':'barbell row technique','Press inclinado mancuernas':'incline dumbbell press technique','Elevaciones laterales':'lateral raise technique','Face pull':'face pull technique','Hang power clean':'hang power clean technique tutorial','Salto horizontal':'broad jump technique','Push press':'push press technique','Lanzamiento rotacional con balón':'medicine ball rotational throw','Swing (KB o mancuerna)':'kettlebell swing technique hip hinge','Farmer walk':'farmer carry technique','Suitcase carry':'suitcase carry technique','Sprint 30 m':'sprint technique acceleration drills','Dominadas explosivas':'explosive pull ups chest to bar','Front lever tuck':'tuck front lever progression','Toes-to-bar':'strict toes to bar progression','Flexiones déficit':'deficit push up','Pistol squat asistida':'assisted pistol squat progression','Dominadas estrictas':'strict pull up technique','Flexiones con pausa':'pause push up','Búlgara sin peso':'bulgarian split squat bodyweight','L-sit colgado':'hanging l-sit progression','Búlgara con mochila':'backpack bulgarian split squat','RDL a una pierna con mochila':'single leg romanian deadlift backpack','Plancha lateral':'side plank technique','Flexión explosiva':'plyometric push up progression','Flexión lastrada con mochila':'weighted backpack push up','Remo invertido bajo mesa':'table inverted row at home','Pike push-up':'pike push up technique','Rotación externa':'shoulder external rotation towel band','Salto vertical (CMJ)':'countermovement jump technique','Salto con mochila':'weighted jump squat backpack','Swing con mochila':'backpack swing hip hinge','Burpees':'burpee technique'};
 /* alternativas: cada fila es un ciclo; ⇄ pasa a la siguiente. w = cuándo usarla */
 const A=(n,o={})=>({n,u:'reps',b:0,nk:undefined,x:undefined,side:undefined,inc:2.5,rpe:undefined,...o});
 const ALTC=[
@@ -350,6 +370,11 @@ const ALTC=[
   [A('Toes-to-bar',{b:1,nk:1,inc:0}),A('Elevación de rodillas colgado',{b:1,nk:1,inc:0,w:'Si balanceas o no llegas a la barra'})],
   [A('Pistol squat asistida',{b:1,nk:1,inc:0,side:1}),A('Sentadilla a una pierna al cajón',{b:1,nk:1,inc:0,side:1,w:'Si el talón se levanta o la rodilla colapsa'})],
   [A('Press banca',{rpe:7}),A('Press banca con mancuernas',{inc:2,rpe:7,w:'Si molesta el hombro con barra'})],
+  [A('Búlgara con mochila',{side:1,inc:2,rpe:8}),A('Búlgara sin peso',{b:1,nk:1,inc:0,side:1,lo:10,hi:15,w:'Si la mochila desequilibra: sin peso y tempo 4-1-X'})],
+  [A('Flexión explosiva',{b:1,nk:1,inc:0}),A('Flexiones con pausa',{b:1,nk:1,inc:0,lo:8,hi:12,w:'Si molesta el hombro al despegar'})],
+  [A('Pike push-up',{b:1,nk:1,inc:0}),A('Flexiones inclinadas',{b:1,nk:1,inc:0,lo:8,hi:12,w:'Si el pike molesta el hombro'})],
+  [A('Remo invertido bajo mesa',{b:1,nk:1,inc:0}),A('Remo con mochila a una mano',{side:1,inc:2,rpe:8,w:'Si no hay mesa firme'})],
+  [A('Swing con mochila',{inc:2,rpe:7}),A('Puente de glúteo a una pierna',{b:1,nk:1,inc:0,side:1,lo:10,hi:15,w:'Si la mochila no se sujeta bien'})],
   [A('Lanzamiento rotacional con balón',{x:'kg',inc:0,side:1}),A('Pallof press explosivo',{side:1,w:'Si no hay pared o balón'})]
 ];
 const altOf=n=>{for(const c of ALTC){const k=c.findIndex(d=>d.n===n);if(k>=0)return c[(k+1)%c.length]}return null};
@@ -485,7 +510,7 @@ function pickToday(){
   else for(let i=1;i<7&&!nx;i++){const n=e.find(([k,v])=>v.day===(dow+i)%7);if(n)nx={key:n[0],when:i===1?'Próxima · mañana':`Próxima · ${DIA[(dow+i)%7]}`}}
   if(!nx)nx={key:e[0][0],when:'Sesión'};
   const orig=S.templates[nx.key];
-  if(S.settings.place==='casa'&&orig.place!=='casa'){const alt=e.find(([k,v])=>v.place==='casa'&&v.day==null);if(alt)return{...nx,key:alt[0],swapped:orig.name}}
+  if(S.settings.place==='casa'&&orig.place!=='casa'){const alt=e.find(([k,v])=>v.place==='casa'&&v.for===nx.key)||e.find(([k,v])=>v.place==='casa'&&v.day==null);if(alt)return{...nx,key:alt[0],swapped:orig.name}}
   return nx;
 }
 function planRows(t){let out='',blk=null;for(const d of t.ex){if(d.c&&d.c!==blk){blk=d.c;const b=(t.blocks||{})[blk];if(b)out+=`<li class="bh"><span>${esc(b.label)}</span><span>${b.rounds?`${b.rounds} rondas${b.work?` · ${b.work}/${b.off} s`:''}${b.rest?` · ${b.rest} s entre rondas`:''}`:''}</span></li>`}
