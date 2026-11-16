@@ -945,5 +945,113 @@ document.addEventListener('keydown',ev=>{if(ev.target.classList&&ev.target.class
 render();if(S.active)startWake();connect();
 </script>
 
+<style id="fx-css">
+/* ---- capa visual v4: movimiento, brillo, feedback ---- */
+:root{--ease:cubic-bezier(.2,.8,.2,1)}
+button,.td,.hs,.meal{transition:transform .12s var(--ease),border-color .15s,background-color .15s,box-shadow .2s}
+button:active:not(:disabled),.td:active,.hs:active,.meal:active{transform:scale(.95)}
+.card,.tile,.ex,.hero{transition:transform .25s var(--ease),box-shadow .25s,border-color .2s}
+@media (hover:hover){.card:hover,.tile:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}}
+body{background:radial-gradient(90% 40% at 85% -5%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 65%),radial-gradient(70% 35% at 0% 30%,color-mix(in srgb,var(--good) 7%,transparent),transparent 70%),var(--bg);background-attachment:fixed}
+h1{background:linear-gradient(100deg,var(--fg) 40%,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ring svg{filter:drop-shadow(0 0 6px color-mix(in srgb,var(--accent) 55%,transparent))}
+.ring .fgc{transition:stroke-dashoffset 1s var(--ease)}
+#view.fx>*{animation:fxUp .5s var(--ease) both}
+#view.fx>*:nth-child(2){animation-delay:.05s}#view.fx>*:nth-child(3){animation-delay:.1s}#view.fx>*:nth-child(4){animation-delay:.15s}
+#view.fx>*:nth-child(5){animation-delay:.2s}#view.fx>*:nth-child(6){animation-delay:.25s}#view.fx>*:nth-child(n+7){animation-delay:.3s}
+@keyframes fxUp{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+#view.fx .meter i,#view.fx .smap i,#view.fx .wk8 i.on{animation:fxGrow .9s var(--ease) both;transform-origin:left}
+@keyframes fxGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+#view.fx .wd{animation:fxUp .45s var(--ease) both}
+#view.fx .wd:nth-child(2){animation-delay:.04s}#view.fx .wd:nth-child(3){animation-delay:.08s}#view.fx .wd:nth-child(4){animation-delay:.12s}#view.fx .wd:nth-child(5){animation-delay:.16s}#view.fx .wd:nth-child(6){animation-delay:.2s}#view.fx .wd:nth-child(7){animation-delay:.24s}
+.wd.done::after{content:"✓";display:block;font-size:11px;font-weight:700;margin-top:1px}
+.wd.today:not(.done){animation:fxPulse 2.4s ease-in-out infinite}
+@keyframes fxPulse{50%{box-shadow:0 0 0 2px var(--fg) inset,0 0 14px color-mix(in srgb,var(--accent) 60%,transparent)}}
+.hero{position:relative;overflow:hidden;animation:fxGlow 4s ease-in-out infinite}
+@keyframes fxGlow{50%{box-shadow:0 14px 40px -14px color-mix(in srgb,var(--accent) 75%,transparent)}}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);background-size:200% 100%;animation:fxSlide 3s linear infinite}
+@keyframes fxSlide{to{background-position:-200% 0}}
+.btn-p{position:relative;overflow:hidden;box-shadow:0 6px 18px -8px color-mix(in srgb,var(--accent) 80%,transparent)}
+.btn-p::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);transform:translateX(-120%);animation:fxShine 3.4s ease-in-out infinite;pointer-events:none}
+@keyframes fxShine{55%,100%{transform:translateX(120%)}}
+.hero h2{background:linear-gradient(90deg,var(--fg),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sets tr{transition:background-color .3s}
+.chk{transition:transform .15s var(--ease),background-color .2s}
+.chk.fx-pop{animation:fxPop .5s var(--ease)}
+@keyframes fxPop{0%{transform:scale(.6)}55%{transform:scale(1.3)}100%{transform:scale(1)}}
+tr.fx-flash td{animation:fxFlash .9s ease-out}
+@keyframes fxFlash{from{background:color-mix(in srgb,var(--good) 55%,transparent)}}
+.ex.fx-done{border-color:color-mix(in srgb,var(--good) 55%,var(--line));opacity:.82}
+.ex.fx-done .ex-h h3::after{content:" ✓";color:var(--good)}
+.ex.cur{animation:fxCur 1.6s ease-in-out infinite}
+@keyframes fxCur{50%{box-shadow:0 0 0 1px var(--accent),0 0 18px color-mix(in srgb,var(--accent) 50%,transparent)}}
+.pr{animation:fxPop .6s var(--ease)}
+.pbar i{background:linear-gradient(90deg,var(--accent),var(--good))}
+#restbar .in{box-shadow:0 10px 30px -10px rgba(0,0,0,.6);animation:fxUp .35s var(--ease)}
+#restT{font-size:28px;min-width:76px}
+#restbar .in.hot{animation:fxHot .5s ease-in-out infinite}
+@keyframes fxHot{50%{transform:scale(1.025);box-shadow:0 0 0 3px var(--warn)}}
+#modal{backdrop-filter:blur(6px);animation:fxFade .25s}
+#modal .box{animation:fxSheet .4s var(--ease)}
+@keyframes fxFade{from{opacity:0}}
+@keyframes fxSheet{from{transform:translateY(40px);opacity:0}}
+#toast{animation:fxUp .3s var(--ease);box-shadow:0 8px 24px -8px rgba(0,0,0,.5)}
+nav.tabs button{transition:color .2s,background-color .2s,transform .15s var(--ease)}
+nav.tabs button[aria-current="page"] svg{animation:fxPop .45s var(--ease)}
+#fxc{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:90}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+<script id="fx-js">
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch{}};
+function confetti(){
+  if(reduce)return;
+  let c=document.getElementById('fxc');if(!c){c=document.createElement('canvas');c.id='fxc';document.body.appendChild(c)}
+  const dpr=devicePixelRatio||1,W=c.width=innerWidth*dpr,H=c.height=innerHeight*dpr,x=c.getContext('2d');
+  const cs=getComputedStyle(document.documentElement),col=['--accent','--good','--fg','--warn'].map(k=>cs.getPropertyValue(k).trim()||'#C9A45C');
+  const P=Array.from({length:90},()=>({x:W/2+(Math.random()-.5)*W*.3,y:H*.55,vx:(Math.random()-.5)*14*dpr,vy:-(8+Math.random()*12)*dpr,s:(4+Math.random()*5)*dpr,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:col[Math.random()*col.length|0]}));
+  const t0=performance.now();
+  (function f(t){const k=t-t0;x.clearRect(0,0,W,H);for(const p of P){p.vy+=.45*dpr;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;x.save();x.globalAlpha=Math.max(0,1-k/2000);x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/3,p.s,p.s*.6);x.restore()}
+    if(k<2000)requestAnimationFrame(f);else x.clearRect(0,0,W,H)})(t0);
+}
+/* envolturas: no tocan la lógica, solo añaden efectos después */
+const _render=render;
+let lastKey='';
+render=function(){
+  _render.apply(this,arguments);
+  const v=document.getElementById('view');
+  const key=ui.tab+'|'+(S.active?(S.active.phase||'a'):'n');
+  if(key!==lastKey){lastKey=key;v.classList.remove('fx');void v.offsetWidth;v.classList.add('fx');clearTimeout(render.t);render.t=setTimeout(()=>v.classList.remove('fx'),1100)}
+  document.querySelectorAll('.ex').forEach(e=>{const r=e.querySelectorAll('.sets tbody tr');e.classList.toggle('fx-done',r.length>0&&[...r].every(t=>t.classList.contains('ok')))});
+};
+const _chk=onCheck;
+onCheck=function(i,j){
+  const st=()=>S.active&&S.active.ex[i]&&S.active.ex[i].sets[j]&&S.active.ex[i].sets[j].done;
+  const was=st();
+  _chk.apply(this,arguments);
+  if(st()&&!was){vib(18);const b=document.getElementById('chk-'+i+'-'+j),r=document.getElementById('row-'+i+'-'+j);b&&b.classList.add('fx-pop');r&&r.classList.add('fx-flash')}
+};
+const _fin=finishWorkout;
+finishWorkout=function(){
+  _fin.apply(this,arguments);
+  const m=document.getElementById('modal');
+  const open=m&&!m.hidden;
+  const pr=open&&m.textContent.includes('Récords nuevos');
+  const goal=open&&weekCounts(1)[0].count===S.settings.target;
+  if(pr||goal){confetti();vib([60,40,60,40,120]);if(goal)toast('¡Meta semanal cumplida!')}
+};
+const _bar=drawBar;
+drawBar=function(){
+  _bar.apply(this,arguments);
+  const el=document.getElementById('barIn');if(!el)return;
+  const l=iv?(iv.paused?iv.left:(iv.end-Date.now())/1000):rest&&!rest.done?(rest.end-Date.now())/1000:99;
+  el.classList.toggle('hot',l<=3&&l>0);
+};
+document.addEventListener('click',e=>{if(e.target.closest('nav.tabs button,.seg button,.td'))vib(8)},true);
+render();
+})();
+</script>
+
 <script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script>
 </body></html>
